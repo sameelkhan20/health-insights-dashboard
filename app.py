@@ -4,6 +4,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import joblib
 from datetime import datetime
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODELS_DIR = os.path.join(BASE_DIR, "models")
 
 st.set_page_config(
     page_title="HealthTune — AI Health Insights",
@@ -23,23 +27,23 @@ def load_csv_safe(path):
 def load_models():
     models = {}
     try:
-        models["log_reg"] = joblib.load(r"C:\Users\samee\Desktop\New folder (3)\models\log_reg.pkl")
+        models["log_reg"] = joblib.load(os.path.join(MODELS_DIR, "log_reg.pkl"))
     except Exception:
         models["log_reg"] = None
     try:
-        models["random_forest"] = joblib.load(r"C:\Users\samee\Desktop\New folder (3)\models\random_forest.pkl")
+        models["random_forest"] = joblib.load(os.path.join(MODELS_DIR, "random_forest.pkl"))
     except Exception:
         models["random_forest"] = None
     try:
-        models["scaler"] = joblib.load(r"C:\Users\samee\Desktop\New folder (3)\models\scaler.pkl")
+        models["scaler"] = joblib.load(os.path.join(MODELS_DIR, "scaler.pkl"))
     except Exception:
         models["scaler"] = None
     try:
-        models["kmeans"] = joblib.load(r"C:\Users\samee\Desktop\New folder (3)\models\kmeans.pkl")
+        models["kmeans"] = joblib.load(os.path.join(MODELS_DIR, "kmeans.pkl"))
     except Exception:
         models["kmeans"] = None
     try:
-        models["cluster_scaler"] = joblib.load(r"C:\Users\samee\Desktop\New folder (3)\models\cluster_scaler.pkl")
+        models["cluster_scaler"] = joblib.load(os.path.join(MODELS_DIR, "cluster_scaler.pkl"))
     except Exception:
         models["cluster_scaler"] = None
     return models
